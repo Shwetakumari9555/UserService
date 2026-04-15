@@ -32,7 +32,6 @@ public class UserServiceImplTest {
     @InjectMocks
     private UserServiceImpl userService;
 
-    // ✅ SUCCESS: Register user
     @Test
     void registerUser_success() {
 
@@ -61,7 +60,6 @@ public class UserServiceImplTest {
         verify(userRepository, times(1)).save(any(User.class));
     }
 
-    // ✅ FAILURE: User not found
     @Test
     void findByEmail_notFound() {
 
@@ -74,7 +72,6 @@ public class UserServiceImplTest {
         assertTrue(ex.getMessage().contains("User Not Found"));
     }
 
-    // ✅ SUCCESS: Find user
     @Test
     void findByEmail_success() {
 
@@ -89,7 +86,6 @@ public class UserServiceImplTest {
         assertEquals("test@gmail.com", response.email());
     }
 
-    // ✅ EDGE CASE: Null password
     @Test
     void registerUser_nullPassword() {
 
@@ -292,7 +288,7 @@ public class UserServiceImplTest {
         existingUser.setEmail("testing@gmail.com");
 
         when(userRepository.findByEmail(anyString()))
-                .thenReturn(Optional.of(existingUser)); // 🔥 triggers ifPresent
+                .thenReturn(Optional.of(existingUser));
 
         RuntimeException ex = assertThrows(RuntimeException.class,
                 () -> userService.registerUser(request));
