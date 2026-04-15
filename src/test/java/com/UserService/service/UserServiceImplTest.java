@@ -1,6 +1,5 @@
 package com.UserService.service;
 
-import com.UserService.UserServiceImpl;
 import com.UserService.dtos.RegisterUserRequest;
 import com.UserService.dtos.UpdateUserRequest;
 import com.UserService.dtos.UserResponse;
